@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
-
 import { injected } from "./index";
 import { NoEthereumProviderError } from "@web3-react/injected-connector";
 import { useActiveWeb3React } from "hooks/useActiveWeb3React";
@@ -21,9 +20,8 @@ export function useEagerConnect() {
         setTried(true);
       }
     });
-  }, [activate]); // intentionally only running on mount (make sure it's only mounted once :))
+  }, [activate]);
 
-  // if the connection worked, wait until we get confirmation of that to flip the flag
   useEffect(() => {
     if (!tried && active) {
       setTried(true);
